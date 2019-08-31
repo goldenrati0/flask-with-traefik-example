@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  user-service:
+    build:
+      context: ./user
+    image: user-service-flask
+    environment:
+      - FLASK_APP=server.py
+    ports:
+      - "5000"
+    networks:
+      - my-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=user-service"
+      - "traefik.frontend.rule=Host:user.localhost"
+
+  payment-service:
+    build:
+      context: ./payment
+    image: payment-service-flask
+    environment:
+      - FLASK_APP=server.py
+    ports:
+      - "5001"
+    networks:
+      - my-network
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=payment-service"
+      - "traefik.frontend.rule=Host:payment.localhost"
+
+  traefik:
+    image: traefik
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.toml:/etc/traefik/traefik.toml:ro
+      - ./traefik/acme:/etc/traefik/acme
+    ports:
+      - "80:80"
+      - "8080:8080"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge

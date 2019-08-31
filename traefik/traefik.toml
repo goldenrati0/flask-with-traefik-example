@@ -4,9 +4,8 @@ defaultEntryPoints = ["http"]
 # Port for the status page
 address = ":8080"
 
-# Entrypoints, http and https
+# Entrypoints, http
 [entryPoints]
-  # http should be redirected to https
   [entryPoints.http]
   address = ":80"
 

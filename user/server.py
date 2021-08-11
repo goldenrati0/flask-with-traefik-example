@@ -7,6 +7,6 @@ app = Flask(__name__)
 def user_service_hello():
     return make_response(jsonify(
         {
-            "msg": "Hello from User Service"
+            "msg": "Hello from User Service!"
         }
     ), 200)

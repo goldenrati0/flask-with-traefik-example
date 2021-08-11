@@ -7,6 +7,6 @@ app = Flask(__name__)
 def payment_service_hello():
     return make_response(jsonify(
         {
-            "msg": "Hello from Payment Service"
+            "msg": "Hello from Payment Service!"
         }
     ), 200)

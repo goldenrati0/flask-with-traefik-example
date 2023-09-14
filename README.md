@@ -6,7 +6,7 @@ You need to install **docker** and **docker-compose** first.
 
 #### Clone this repository
 ```bash
-git clone https://github.com/tahmid-choyon/flask-with-traefik-example.git
+git clone https://github.com/goldenrati0/flask-with-traefik-example.git
 ```
 
 #### Change working directory
